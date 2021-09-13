@@ -66,13 +66,7 @@ To **run** the "laravel" and "vue" commands:
 bin/run
 ```
 
-> #### Executando o servidores:
->
-> - _Sem argumentos_: Inicia os dois servidores locais sem atrelar o terminal
-> - **laravel**: In o servidor local do laravel atrelando o terminal
-> - **vue**:Inicia o servidor local do vue atrelando o terminal
-
-To open container's bash
+To open container's **bash**
 
 ```sh
 bin/bash backend
