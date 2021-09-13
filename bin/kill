@@ -7,6 +7,7 @@ docker rm -f tasks_phpmyadmin
 docker rm -f tasks_php
 docker rm -f tasks_frontend
 docker rmi tasks_docker
+docker rmi tasks_vue_docker
 docker volume rm "$CURRENT_DIRECTOR"_db
 docker network rm "$CURRENT_DIRECTOR"_tasks-network
 rm -rf ./src/backend/vendor
