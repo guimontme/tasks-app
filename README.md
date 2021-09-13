@@ -13,6 +13,21 @@ This is a tasks project with Laravel and Vue.js.
 - Vue
 - Sass
 
+
+## Before start 
+Change values in root doc .env
+```env
+ADMIN_EMAIL=admin@example.com
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.domain.com
+MAIL_PORT=466
+MAIL_USERNAME=username
+MAIL_PASSWORD=password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=site@domain.com
+```
+
 ## Commands
 
 To **install** the dependencies:
