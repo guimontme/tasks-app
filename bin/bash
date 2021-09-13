@@ -1,0 +1,9 @@
+#!/bin/bash
+ARG=$1
+if [ $ARG = "backend" ]; then
+    docker exec -it tasks_php bash
+elif [ $ARG = "frontend" ]; then
+    docker exec -it tasks_frontend bash
+else
+    echo "No valid container para to start."
+fi

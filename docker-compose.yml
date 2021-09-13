@@ -1,0 +1,91 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    container_name: tasks_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_tasks
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      tasks-network:
+        ipv4_address: 171.0.0.10
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: tasks_phpmyadmin
+    restart: always
+    ports:
+      - 8306:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: db
+      PMA_USER: admin
+      PMA_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: root
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      tasks-network:
+        ipv4_address: 171.0.0.15
+
+  php:
+    image: tasks_docker
+    container_name: tasks_php
+    build:
+      context: .
+      dockerfile: ./.docker/php/Dockerfile
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src/backend:/var/www/html
+    command: 'php -S 171.0.0.20:8000 -t public'
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      tasks-network:
+        ipv4_address: 171.0.0.20
+
+  node:
+    image: tasks_vue_docker
+    container_name: tasks_frontend
+    build:
+      context: ./src/frontend
+      dockerfile: ./../../.docker/frontend/Dockerfile
+    restart: always
+    ports:
+      - 80:8080
+    volumes:
+      - ./src/frontend:/usr/app
+      - ./src/frontend/node_modules:/usr/app/node_modules
+    links:
+      - db
+    depends_on:
+      - db
+    working_dir: /usr/app
+    command: ['yarn', 'serve']
+    networks:
+      tasks-network:
+        ipv4_address: 171.0.0.21
+
+networks:
+  tasks-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 171.0.0.0/24
+          gateway: 171.0.0.1
+
+volumes:
+  db:

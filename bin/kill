@@ -1,0 +1,13 @@
+#!/bin/bash
+CURRENT_DIRECTOR=${PWD##*/}
+CURRENT_DIRECTOR="${CURRENT_DIRECTOR,,}"
+CURRENT_DIRECTOR="${CURRENT_DIRECTOR// /_}"
+docker rm -f tasks_mysql
+docker rm -f tasks_phpmyadmin
+docker rm -f tasks_php
+docker rm -f tasks_frontend
+docker rmi tasks_docker
+docker volume rm "$CURRENT_DIRECTOR"_db
+docker network rm "$CURRENT_DIRECTOR"_tasks-network
+rm -rf ./src/backend/vendor
+rm -rf ./src/frontend/node_modules

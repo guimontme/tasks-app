@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it tasks_php php artisan user:make

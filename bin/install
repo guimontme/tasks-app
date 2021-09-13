@@ -1,0 +1,14 @@
+#!/bin/bash
+cd ./src/frontend
+sudo npm install -g @vue/cli yarn
+yarn
+cd ../..
+
+# Build project
+docker-compose up --build -d
+
+# Install Laravel
+docker exec -it tasks_php composer install
+
+docker stop tasks_php
+docker start tasks_php
