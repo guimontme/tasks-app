@@ -1,4 +1,5 @@
 #!/bin/bash
 docker exec -it tasks_php php artisan migrate
+docker exec -it tasks_php php artisan jwt:secret
 docker exec -it tasks_php php artisan user:make
 echo "Tasks' frontend started in: http://localhost/"
