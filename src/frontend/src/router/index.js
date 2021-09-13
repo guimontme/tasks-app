@@ -23,14 +23,17 @@ const routes = [
     path: '/tasks',
     name: 'Tasks',
     component: Tasks,
-    // meta: {
-    //   login: true,
-    // },
+    meta: {
+      login: true,
+    },
   },
   {
     path: '/user',
     name: 'Profile',
     component: Profile,
+    meta: {
+      login: true,
+    },
   }, 
   {
     path: '/user/new',
@@ -47,11 +50,11 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some((record) => record.meta.login)) {
-//     if (!localStorage.token) next("/login");
-//   }
-//   next();
-// });
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.login)) {
+    if (!localStorage.token) next("/login");
+  }
+  next();
+});
 
 export default router;
