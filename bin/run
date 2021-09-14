@@ -6,9 +6,7 @@ if [ -z $ARG ]; then
     docker exec -it -d tasks_frontend yarn serve
     echo "Node's container started in: http://localhost/"
     exit
-fi
-
-if [ $ARG = "laravel" ]; then
+elif [ $ARG = "laravel" ]; then
     docker exec -it tasks_php php -S 171.0.0.20:8000 -t public
 elif [ $ARG = "vue" ]; then
     docker exec -it tasks_frontend yarn serve

@@ -5,9 +5,7 @@ if [ -z $ARG ]; then
     docker stop tasks_phpmyadmin
     docker stop tasks_php
     docker stop tasks_frontend
-fi
-
-if [ $ARG = "backend" ]; then
+elif [ $ARG = "backend" ]; then
     docker stop tasks_mysql
     docker stop tasks_phpmyadmin
     docker stop tasks_php

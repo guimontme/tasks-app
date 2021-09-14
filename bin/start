@@ -5,9 +5,7 @@ if [ -z $ARG ]; then
     docker start tasks_phpmyadmin
     docker start tasks_php
     docker start tasks_frontend
-fi
-
-if [ $ARG = "backend" ]; then
+elif [ $ARG = "backend" ]; then
     docker start tasks_mysql
     docker start tasks_phpmyadmin
     docker start tasks_php
