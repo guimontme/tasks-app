@@ -1,4 +1,4 @@
-# Tasks Challange with Laravel and Vue.js
+# Task App with Laravel and Vue.js
 
 This is a tasks project with Laravel and Vue.js.
 
@@ -10,7 +10,7 @@ This is a tasks project with Laravel and Vue.js.
 - PHP 7.4
 - Laravel 8
 - Node
-- Vue
+- Vue.js 2
 - Sass
 
 
